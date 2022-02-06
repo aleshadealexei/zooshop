@@ -1,49 +1,46 @@
 package ru.zooshop.conrollers;
 
+import netscape.javascript.JSObject;
 import org.springframework.web.bind.annotation.*;
 import ru.zooshop.DTO.InputDTO;
+import ru.zooshop.DTO.OutputDTO;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/animals")
 public class MainController {
-    private ArrayList<HashMap<String, String>> animals = new ArrayList<>() {{
-        add(new HashMap<>() {{
-            put("4","Animal1");
-            put("5","Animal2");
-            put("6","Animal3");
-        }});
+    private List<OutputDTO> animals = new ArrayList<>() {{
+        add(new OutputDTO("1","Animal1"));
+        add(new OutputDTO("2","Animal2"));
+        add(new OutputDTO("3","Animal3"));
     }};
 
     @GetMapping
-    public ArrayList<HashMap<String, String>> getTest( ) {
+    public List<OutputDTO> getAll() {
         return animals;
     }
 
-    @GetMapping(value = "/{id}")
-    public String getElement(@PathVariable  String id,
-                             HttpServletResponse response) throws IOException {
-        for (var map :
-                animals) {
-            var set = map.keySet();
-            if (map.containsKey(id)) {
-                return map.get(id);
-            }
-        }
-        response.sendError(1);
-        return "null";
+    @GetMapping("{id}")
+    public OutputDTO getOne(@PathVariable String id) {
+        return getAnimal(id);
     }
 
-    @PostMapping(value = "/post")
+    private OutputDTO getAnimal(@PathVariable String id) {
+        return animals.stream()
+                .filter(animal -> animal.getId().equals(id))
+                .findFirst().get();
+    }
+
+    @PostMapping
     public void getElement(HttpServletResponse response,
-                           @RequestBody InputDTO mapa) throws IOException {
-        animals.add(new HashMap<>() {{
-            put(mapa.getId(), mapa.getValue());
-        }});
+                           @RequestBody OutputDTO mapa) throws IOException {
+        animals.add(mapa);
         response.sendRedirect("/");
     }
 }
