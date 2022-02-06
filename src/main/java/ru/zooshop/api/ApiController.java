@@ -1,7 +1,6 @@
-package ru.zooshop.conrollers;
+package ru.zooshop.api;
 
 import org.springframework.web.bind.annotation.*;
-import ru.zooshop.DTO.InputDTO;
 import ru.zooshop.DTO.OutputDTO;
 
 import javax.servlet.http.HttpServletResponse;
@@ -11,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/animals")
-public class MainController {
+@RequestMapping("/api")
+public class ApiController {
     int id = 4;
     private List<OutputDTO> animals = new ArrayList<>() {{
         add(new OutputDTO("1","Animal1"));
@@ -20,12 +19,12 @@ public class MainController {
         add(new OutputDTO("3","Animal3"));
     }};
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<OutputDTO> getAll() {
         return animals;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/getOne/{id}")
     public OutputDTO getOne(@PathVariable String id) {
         return getAnimal(id);
     }
@@ -37,8 +36,8 @@ public class MainController {
     }
 
     @PostMapping
-    public OutputDTO getElement(HttpServletResponse response,
-                           @RequestBody Map<String,String> text) throws IOException {
+    public OutputDTO saveElement(HttpServletResponse response,
+                                 @RequestBody Map<String,String> text) throws IOException {
         var out = new OutputDTO(String.valueOf(id++), text.get("text"));
         animals.add(out);
         return out;
