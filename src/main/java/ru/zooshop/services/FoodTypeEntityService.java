@@ -7,9 +7,9 @@ import ru.zooshop.domain.FoodTypeEntity;
 import java.util.List;
 
 public interface FoodTypeEntityService {
-    FoodTypeEntity addBank(FoodTypeEntity FlyAnimal);
+    FoodTypeEntity addFoodType(FoodTypeEntity FlyAnimal);
     void delete(int id);
     FoodTypeEntity getByName(String name);
-    FoodTypeEntity editBank(FoodTypeEntity farmAnimal);
+    FoodTypeEntity editFoodType(FoodTypeEntity farmAnimal);
     List<FoodTypeEntity> getAll();
 }

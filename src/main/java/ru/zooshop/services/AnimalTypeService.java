@@ -7,9 +7,9 @@ import ru.zooshop.types.AnimalType;
 import java.util.List;
 
 public interface AnimalTypeService {
-    AnimalTypeEntity addBank(AnimalTypeEntity animalType);
+    AnimalTypeEntity addAnimalType(AnimalTypeEntity animalType);
     void delete(int id);
     AnimalTypeEntity getByName(String name);
-    AnimalTypeEntity editBank(AnimalTypeEntity bank);
+    AnimalTypeEntity editAnimalType(AnimalTypeEntity bank);
     List<AnimalTypeEntity> getAll();
 }

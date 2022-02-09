@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Inheritance(
         strategy = InheritanceType.JOINED
 )
-public abstract class Animal {
+public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

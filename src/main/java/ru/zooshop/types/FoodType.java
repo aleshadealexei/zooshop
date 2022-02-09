@@ -2,7 +2,7 @@ package ru.zooshop.types;
 
 public enum FoodType {
     ALL("Всеядный"),
-    Vegan("Травоядный"),
+    VEGAN("Травоядный"),
     PREDATOR("Хищник");
 
     String value;

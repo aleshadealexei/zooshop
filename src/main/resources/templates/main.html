@@ -1,11 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>MainPage of ZooShop</title>
+    <title>Add </title>
 </head>
 <body>
-    <form>
+    <h3>QWEASD</h3>
+    <form th:action="@{/saveAnimals}" th:object="${animal}" method="post">
+        <label>
+            <input type="text" th:field="${animal.age}" placeholder="Возраст питомца"/>
+        </label>
+        <label>
+            <input type="text" th:field="*{maxAge}" placeholder="Макс.возраст питомца"/>
+        </label>
+        <label>
+            <input type="text" th:field="*{name}" placeholder="Имя питомца"/>
+        </label>
+        <label>
+            <input type="text" th:field="*{gender}" placeholder="Пол питомца"/>
+        </label>
+        <label>
+
+            <select  th:field="*{type}" >
+                <option th:each="type : ${animalTypes}" th:text="${type.getAnimalType()}"
+                        th:value="${type.getId()}"></option>
+            </select>
+        </label>
+        <label>
+            <select  th:field="*{typeOfFood}" >
+                <option th:each="type : ${foodTypes}" th:text="${type.getFoodType()}"
+                        th:value="${type.getId()}"></option>
+            </select>
+        </label>
+        <label>
+            <input type="text" th:field="*{iq}" placeholder="iq питомца"/>
+        </label>
+        <label>
+            <input type="text" th:field="*{length}" placeholder="Длина питомца"/>
+        </label>
+        <label>
+            <input type="text" th:field="*{width}" placeholder="Ширина питомца" />
+        </label>
+        <label>
+            <input type="text" th:field="*{height}" placeholder="Высотка питомца"/>
+        </label>
+        <label>
+            <input type="text" th:field="*{color}" placeholder="Окрас питомца"/>
+        </label>
+        <button type="submit">Добавить!</button>
     </form>
 </body>
 </html>
